@@ -1,3 +1,4 @@
+```tsx
 import { createFileRoute } from "@tanstack/react-router"
 import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
@@ -7,38 +8,60 @@ import { useRef } from "react"
 import { PythonEmblem, PythonLogo } from "#/components/python-emblem"
 import { StarField } from "#/components/star-field"
 
-export const Route = createFileRoute("/")({ component: Home })
+// -----------------------------------------------------------------------------
+// GSAP
+// -----------------------------------------------------------------------------
+
+gsap.registerPlugin(ScrollTrigger)
+
+// -----------------------------------------------------------------------------
+// Links
+// -----------------------------------------------------------------------------
 
 const WHATSAPP =
   "https://wa.me/5534998944195?text=Ol%C3%A1!%20Quero%20automatizar%20meu%20neg%C3%B3cio"
+
 const WHATSAPP_SIMPLE = "https://wa.me/5534998944195"
 
-/* ---------------------------------------------------------------- header */
+export const Route = createFileRoute("/")({
+  component: Home,
+})
+
+// -----------------------------------------------------------------------------
+// Header
+// -----------------------------------------------------------------------------
+
 function Header() {
   return (
     <header className="glass sticky top-0 z-50 border-b border-white/10">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="text-xl font-extrabold tracking-tight">
+        <a
+          href="#top"
+          className="text-xl font-extrabold tracking-tight transition-opacity duration-300 hover:opacity-80"
+        >
           Code<span className="text-teal">Sob</span>
         </a>
+
         <nav className="flex items-center gap-3 sm:gap-8">
           <a
             href="#solucoes"
-            className="hidden text-sm font-medium text-mist transition-colors hover:text-ink sm:block"
+            className="hidden text-sm font-medium text-mist transition-colors duration-300 hover:text-white sm:block"
           >
             Soluções
           </a>
+
           <a
             href="#sobre"
-            className="hidden text-sm font-medium text-mist transition-colors hover:text-ink sm:block"
+            className="hidden text-sm font-medium text-mist transition-colors duration-300 hover:text-white sm:block"
           >
             Como funciona
           </a>
+
           <a
             href={WHATSAPP}
             target="_blank"
-            rel="noopener"
-            className="rounded-full bg-gradient-to-r from-violet to-teal px-5 py-2 text-sm font-bold text-[#03130f] transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(47,224,204,0.35)]"
+            rel="noopener noreferrer"
+            className="rounded-full bg-gradient-to-r from-violet to-teal px-5 py-2 text-sm font-bold text-[#03130f] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(47,224,204,0.35)]"
           >
             Fale comigo
           </a>
@@ -48,69 +71,72 @@ function Header() {
   )
 }
 
-/* ----------------------------------------------------------------- hero */
+// -----------------------------------------------------------------------------
+// Hero
+// -----------------------------------------------------------------------------
+
 function Hero() {
   return (
     <section
       id="top"
-      className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-6 px-6 pt-10 pb-14 sm:pt-16 lg:grid-cols-2 lg:gap-10"
+      className="relative mx-auto grid max-w-6xl grid-cols-1 items-center gap-8 px-6 pb-16 pt-10 sm:pt-16 lg:grid-cols-2 lg:gap-12"
     >
-      <div className="order-none">
-        <div className="hero-rise" style={{ animationDelay: "0.05s" }}>
+      {/* Texto */}
+      <div className="hero-content">
+        <div className="hero-item">
           <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-teal/70 px-4 py-1.5 text-xs font-semibold tracking-wide text-teal">
             <span className="h-2 w-2 rounded-full bg-teal shadow-[0_0_10px_2px_rgba(47,224,204,0.6)]" />
             SISTEMAS SOB MEDIDA
           </span>
         </div>
 
-        <div
-          className="hero-rise mb-5 border-l-[3px] border-orange pl-4"
-          style={{ animationDelay: "0.18s" }}
-        >
+        <div className="hero-item mb-5 border-l-[3px] border-orange pl-4">
           <div className="text-sm font-semibold text-white">
             Automação eficiente
           </div>
+
           <div className="text-sm font-bold text-orange">
             para o seu negócio
           </div>
         </div>
 
-        <h1
-          className="font-display-tracked hero-rise text-[clamp(40px,8vw,72px)] leading-[1.02]"
-          style={{ animationDelay: "0.3s" }}
-        >
+        <h1 className="hero-item font-display-tracked text-[clamp(40px,8vw,72px)] leading-[1.02]">
           Automação
           <br />
+
           <span className="inline-block -mx-1 my-2 rounded-md bg-orange px-2 text-[#1a1200]">
             que move
           </span>
+
           <br />
+
           o seu{" "}
-          <span className="text-teal" style={{ textShadow: "0 0 28px rgba(47,224,204,0.4)" }}>
+          <span
+            className="text-teal"
+            style={{
+              textShadow: "0 0 28px rgba(47,224,204,0.4)",
+            }}
+          >
             negócio
           </span>
         </h1>
 
-        <p
-          className="hero-rise mt-6 max-w-[34rem] text-[17px] leading-relaxed text-[#d3d8e4]"
-          style={{ animationDelay: "0.44s" }}
-        >
-          Sistemas em <span className="font-bold text-teal">Python</span>,
-          feitos <span className="font-bold text-violet">sob medida</span> para
+        <p className="hero-item mt-6 max-w-[34rem] text-[17px] leading-relaxed text-[#d3d8e4]">
+          Sistemas em{" "}
+          <span className="font-bold text-teal">Python</span>, feitos{" "}
+          <span className="font-bold text-violet">sob medida</span> para
           agenda, estoque, clínicas e financeiro.
         </p>
 
-        <div
-          className="hero-rise mt-8 flex flex-wrap items-center gap-3"
-          style={{ animationDelay: "0.56s" }}
-        >
+        <div className="hero-item mt-8 flex flex-wrap items-center gap-3">
           <a
             href={WHATSAPP}
             target="_blank"
-            rel="noopener"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet to-teal px-7 py-3.5 font-display-tracked text-base text-[#03130f] transition-transform duration-150 hover:-translate-y-0.5 hover:shadow-[0_14px_40px_rgba(47,224,204,0.3)]"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-violet to-teal px-7 py-3.5 font-display-tracked text-base text-[#03130f] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(47,224,204,0.3)]"
           >
             Vamos automatizar
+
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -118,30 +144,35 @@ function Hero() {
               strokeWidth="2.4"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="h-4 w-4"
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
             >
               <path d="M9 6l6 6-6 6" />
             </svg>
           </a>
+
           <a
             href={WHATSAPP_SIMPLE}
             target="_blank"
-            rel="noopener"
-            className="inline-flex items-center gap-2 rounded-full border border-teal/50 px-6 py-3 text-sm font-bold text-teal transition-colors hover:bg-teal/10"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-teal/50 px-6 py-3 text-sm font-bold text-teal transition-all duration-300 hover:-translate-y-0.5 hover:bg-teal/10"
           >
             Orçamento grátis
           </a>
         </div>
       </div>
 
-      <div className="hero-fade order-first py-6 lg:order-none" style={{ animationDelay: "0.3s" }}>
+      {/* Emblema */}
+      <div className="hero-visual flex justify-center py-6 lg:justify-end">
         <PythonEmblem />
       </div>
     </section>
   )
 }
 
-/* --------------------------------------------------------- features list */
+// -----------------------------------------------------------------------------
+// Features
+// -----------------------------------------------------------------------------
+
 const FEATURES = [
   {
     title: "Agenda",
@@ -149,87 +180,148 @@ const FEATURES = [
     color: "#2fe0cc",
     border: "rgba(47,224,204,0.4)",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
         <rect x="3" y="5" width="18" height="16" rx="2" />
         <path d="M3 10h18M8 3v4M16 3v4" />
         <path d="M8 14h2M14 14h2M8 17h2" />
       </svg>
     ),
   },
+
   {
     title: "Estoque",
     desc: "controle em tempo real",
     color: "#8b5cf6",
     border: "rgba(139,92,246,0.4)",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
         <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" />
         <path d="M4.5 7.5L12 12l7.5-4.5M12 12v9" />
       </svg>
     ),
   },
+
   {
     title: "Clínicas",
     desc: "prontuário e sessões",
     color: "#2fe0cc",
     border: "rgba(47,224,204,0.4)",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
         <path d="M12 21s-7-4.5-9.3-9C1.2 8.7 3 5 6.7 5c2 0 3.4 1.2 4.3 2.6C11.9 6.2 13.3 5 15.3 5 19 5 20.8 8.7 19.3 12 17 16.5 12 21 12 21z" />
         <path d="M9 12l1.6 1.6L14 10" strokeWidth="1.6" />
       </svg>
     ),
   },
+
   {
     title: "Financeiro",
     desc: "relatórios sem esforço",
     color: "#f5a623",
     border: "rgba(245,166,35,0.4)",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      >
         <path d="M4 20V10M10 20V4M16 20v-7M22 20V13" />
       </svg>
     ),
   },
 ]
 
+// -----------------------------------------------------------------------------
+// Features component
+// -----------------------------------------------------------------------------
+
 function Features() {
   return (
     <div className="flex flex-col">
-      {FEATURES.map((f) => (
+      {FEATURES.map((feature) => (
         <article
-          key={f.title}
+          key={feature.title}
           className="rvl flex items-center gap-4 border-b border-dotted border-white/15 py-5 last:border-b-0"
         >
           <span
             className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border"
-            style={{ color: f.color, borderColor: f.border }}
+            style={{
+              color: feature.color,
+              borderColor: feature.border,
+            }}
           >
-            {f.icon}
+            {feature.icon}
           </span>
+
           <div>
-            <h3 className="text-lg font-bold leading-tight">{f.title}</h3>
-            <p className="text-sm text-mist">{f.desc}</p>
+            <h3 className="text-lg font-bold leading-tight">
+              {feature.title}
+            </h3>
+
+            <p className="text-sm text-mist">
+              {feature.desc}
+            </p>
           </div>
         </article>
       ))}
+
       <article className="rvl mt-1 flex items-center gap-4 pt-4">
         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-pyblue/50 p-1.5">
           <PythonLogo className="h-full w-full" />
         </span>
+
         <div>
-          <h3 className="text-lg font-bold leading-tight">100% Python</h3>
-          <p className="text-sm text-mist">por trás de tudo</p>
+          <h3 className="text-lg font-bold leading-tight">
+            100% Python
+          </h3>
+
+          <p className="text-sm text-mist">
+            por trás de tudo
+          </p>
         </div>
       </article>
     </div>
   )
 }
 
-/* ------------------------------------------------------- solutions panel */
+// -----------------------------------------------------------------------------
+// Solutions
+// -----------------------------------------------------------------------------
+
 function Solutions() {
+  const benefits = [
+    {
+      label: "Código limpo",
+      icon: "</>",
+    },
+    {
+      label: "Escalável e seguro",
+      icon: "☁",
+    },
+    {
+      label: "Focado em resultados",
+      icon: "⛁",
+    },
+  ]
+
   return (
-    <div className="rvl rounded-2xl border border-violet/50 bg-gradient-to-b from-violet/[0.07] to-panel p-7 sm:p-8">
+    <div className="rvl rounded-2xl border border-violet/50 bg-gradient-to-b from-violet/[0.07] to-panel p-7 transition-transform duration-500 hover:-translate-y-1 sm:p-8">
       <div className="mb-6 flex items-start gap-4">
         <svg
           viewBox="0 0 24 24"
@@ -241,10 +333,12 @@ function Solutions() {
           <path d="M12 2l8 3v6c0 5-3.4 8.7-8 11-4.6-2.3-8-6-8-11V5l8-3z" />
           <path d="M9 12l2 2 4-4" strokeWidth="1.8" />
         </svg>
+
         <div>
           <h3 className="text-xl font-extrabold leading-tight">
             Soluções eficientes
           </h3>
+
           <div className="text-sm font-bold text-orange">
             para o seu negócio
           </div>
@@ -252,15 +346,12 @@ function Solutions() {
       </div>
 
       <div className="mb-6 grid grid-cols-3 gap-3 border-t border-white/10 pt-6">
-        {[
-          { label: "Código limpo", icon: "</>" },
-          { label: "Escalável e seguro", icon: "cloud" },
-          { label: "Focado em resultados", icon: "db" },
-        ].map((item) => (
+        {benefits.map((item) => (
           <div key={item.label} className="text-center">
             <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-xl border border-white/15 font-mono text-sm text-[#d3d8e4]">
-              {item.icon === "</>" ? "</>" : item.icon === "cloud" ? "☁" : "⛁"}
+              {item.icon}
             </div>
+
             <div className="text-[11px] font-semibold tracking-wide text-mist">
               {item.label}
             </div>
@@ -279,10 +370,12 @@ function Solutions() {
           <circle cx="12" cy="12" r="9" />
           <path d="M8 12l2.5 2.5L16 9" strokeWidth="2" />
         </svg>
+
         <div>
           <h4 className="text-[15px] font-extrabold text-orange">
             Orçamento sem compromisso
           </h4>
+
           <p className="mt-1 text-[13.5px] leading-relaxed text-[#c9cfdc]">
             Vamos transformar suas ideias em soluções.
           </p>
@@ -292,45 +385,81 @@ function Solutions() {
   )
 }
 
-/* ----------------------------------------------------------- mid section */
+// -----------------------------------------------------------------------------
+// Mid section
+// -----------------------------------------------------------------------------
+
 function MidSection() {
   return (
     <section
       id="solucoes"
       className="relative mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-6 py-14 lg:grid-cols-2 lg:gap-16"
     >
-      <h2 className="sr-only">Soluções sob medida</h2>
+      <h2 className="sr-only">
+        Soluções sob medida
+      </h2>
+
       <Features />
+
       <Solutions />
     </section>
   )
 }
 
-/* ----------------------------------------------------------- trust bar */
+// -----------------------------------------------------------------------------
+// Trust bar
+// -----------------------------------------------------------------------------
+
 function TrustBar() {
   const items = [
     {
       label: "Experiência comprovada",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-6 w-6"
+        >
           <path d="M12 2l8 3v6c0 5-3.4 8.7-8 11-4.6-2.3-8-6-8-11V5l8-3z" />
           <path d="M9 12l2 2 4-4" />
         </svg>
       ),
     },
+
     {
       label: "Entrega rápida",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-6 w-6"
+        >
           <path d="M12 2c2.5 3 4 6.5 4 10a4 4 0 01-8 0c0-3.5 1.5-7 4-10z" />
           <path d="M9 16l-3 5 4-2M15 16l3 5-4-2" />
         </svg>
       ),
     },
+
     {
       label: "Suporte contínuo",
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-6 w-6"
+        >
           <path d="M4 13a8 8 0 0116 0" />
           <path d="M4 13v4a2 2 0 002 2h1v-6H5a1 1 0 00-1 1z" />
           <path d="M20 13v4a2 2 0 01-2 2h-1v-6h1a1 1 0 011 1z" />
@@ -338,20 +467,24 @@ function TrustBar() {
       ),
     },
   ]
+
   return (
     <section
       id="sobre"
       className="mx-auto max-w-6xl px-6 pb-6 pt-2 sm:pt-6"
     >
       <div className="rvl grid grid-cols-1 overflow-hidden rounded-2xl border border-white/15 sm:grid-cols-3">
-        {items.map((item, i) => (
+        {items.map((item, index) => (
           <div
             key={item.label}
-            className={`flex items-center justify-center gap-3 px-6 py-6 sm:py-7 ${
-              i < items.length - 1 ? "border-white/10 sm:border-r" : ""
-            } border-b border-white/10 sm:border-b-0`}
+            className={`flex items-center justify-center gap-3 border-b border-white/10 px-6 py-6 sm:py-7 sm:border-b-0 ${
+              index < items.length - 1 ? "sm:border-r" : ""
+            }`}
           >
-            <span className="shrink-0 text-orange">{item.icon}</span>
+            <span className="shrink-0 text-orange">
+              {item.icon}
+            </span>
+
             <span className="font-display-tracked text-sm tracking-wide text-white">
               {item.label}
             </span>
@@ -362,15 +495,18 @@ function TrustBar() {
   )
 }
 
-/* ------------------------------------------------------------ CTA pills */
+// -----------------------------------------------------------------------------
+// CTA Pills
+// -----------------------------------------------------------------------------
+
 function CtaPills() {
   return (
     <section className="mx-auto grid max-w-6xl grid-cols-1 gap-4 px-6 py-8 sm:grid-cols-2">
       <a
         href="https://codesob.com"
         target="_blank"
-        rel="noopener"
-        className="rvl flex items-center gap-4 rounded-2xl bg-white p-5 text-[#0a0f1c] transition-transform duration-150 hover:-translate-y-1"
+        rel="noopener noreferrer"
+        className="rvl flex items-center gap-4 rounded-2xl bg-white p-5 text-[#0a0f1c] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(255,255,255,0.12)]"
       >
         <svg
           viewBox="0 0 24 24"
@@ -382,16 +518,17 @@ function CtaPills() {
           <circle cx="12" cy="12" r="9" />
           <path d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z" />
         </svg>
+
         <span className="font-display-tracked text-lg sm:text-xl">
           codesob.com
         </span>
       </a>
+
       <a
         href={WHATSAPP}
         target="_blank"
-        rel="noopener"
-        className="rvl flex items-center gap-4 rounded-2xl bg-gradient-to-r from-amber to-orange p-5 text-[#1a1200] transition-transform duration-150 hover:-translate-y-1"
-        style={{ animationDelay: "0.08s" }}
+        rel="noopener noreferrer"
+        className="rvl flex items-center gap-4 rounded-2xl bg-gradient-to-r from-amber to-orange p-5 text-[#1a1200] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(245,166,35,0.2)]"
       >
         <svg
           viewBox="0 0 24 24"
@@ -405,10 +542,12 @@ function CtaPills() {
           <circle cx="12.5" cy="11.5" r="1" />
           <circle cx="16" cy="11.5" r="1" />
         </svg>
+
         <div>
           <div className="text-base font-extrabold leading-tight">
             Fale comigo
           </div>
+
           <div className="text-[13px] font-semibold leading-tight">
             Leve sua empresa ao próximo nível!
           </div>
@@ -418,24 +557,46 @@ function CtaPills() {
   )
 }
 
-/* --------------------------------------------------------------- stats */
+// -----------------------------------------------------------------------------
+// Stats
+// -----------------------------------------------------------------------------
+
 function Stats() {
   const items = [
-    { top: "100%", label: "sob medida", color: "text-teal" },
-    { top: "Python", label: "por trás de tudo", color: "text-violet" },
-    { top: "Direto", label: "com quem programa", color: "text-teal" },
+    {
+      top: "100%",
+      label: "sob medida",
+      color: "text-teal",
+    },
+
+    {
+      top: "Python",
+      label: "por trás de tudo",
+      color: "text-violet",
+    },
+
+    {
+      top: "Direto",
+      label: "com quem programa",
+      color: "text-teal",
+    },
   ]
+
   return (
     <section className="mx-auto grid max-w-6xl grid-cols-1 gap-5 px-6 py-4 sm:grid-cols-3">
-      {items.map((s) => (
-        <div key={s.top} className="rvl text-center sm:py-2">
+      {items.map((item) => (
+        <div
+          key={item.top}
+          className="rvl text-center sm:py-2"
+        >
           <div
-            className={`font-display-tracked text-[26px] ${s.color}`}
+            className={`font-display-tracked text-[26px] ${item.color}`}
           >
-            {s.top}
+            {item.top}
           </div>
+
           <div className="mt-1 text-[12px] tracking-wide text-mist">
-            {s.label}
+            {item.label}
           </div>
         </div>
       ))}
@@ -443,17 +604,21 @@ function Stats() {
   )
 }
 
-/* -------------------------------------------------------------- big CTA */
+// -----------------------------------------------------------------------------
+// Big CTA
+// -----------------------------------------------------------------------------
+
 function BigCta() {
   return (
-    <section className="px-6 py-10 text-center">
+    <section className="px-6 py-12 text-center">
       <a
         href={WHATSAPP}
         target="_blank"
-        rel="noopener"
-        className="rvl inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-violet to-teal px-9 py-4 font-display-tracked text-lg text-[#03130f] transition-transform duration-150 hover:-translate-y-1 hover:shadow-[0_14px_44px_rgba(47,224,204,0.35)]"
+        rel="noopener noreferrer"
+        className="rvl inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-violet to-teal px-9 py-4 font-display-tracked text-lg text-[#03130f] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_44px_rgba(47,224,204,0.35)]"
       >
         Vamos automatizar
+
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -470,34 +635,45 @@ function BigCta() {
   )
 }
 
-/* -------------------------------------------------------------- footer */
+// -----------------------------------------------------------------------------
+// Footer
+// -----------------------------------------------------------------------------
+
 function Footer() {
+  const tags = [
+    "#automacao",
+    "#python",
+    "#sistemasobmedida",
+    "#negocio",
+    "#eficiencia",
+  ]
+
   return (
     <footer className="relative border-t border-white/10 px-6 py-12 text-center">
       <div className="mx-auto max-w-4xl">
         <div className="font-display-tracked text-2xl">
           Code<span className="text-teal">Sob</span>
         </div>
+
         <p className="mt-2 text-sm text-mist">
           Tecnologia sob medida, resultado sob controle
         </p>
+
         <a
           href={WHATSAPP_SIMPLE}
           target="_blank"
-          rel="noopener"
-          className="mt-4 inline-flex items-center gap-2 text-teal"
+          rel="noopener noreferrer"
+          className="mt-4 inline-flex items-center gap-2 text-teal transition-opacity duration-300 hover:opacity-80"
         >
           <WhatsappIcon />
-          <span className="font-bold">(34) 99894-4195</span>
+
+          <span className="font-bold">
+            (34) 99894-4195
+          </span>
         </a>
+
         <div className="mt-7 flex flex-wrap justify-center gap-2.5">
-          {[
-            "#automacao",
-            "#python",
-            "#sistemasobmedida",
-            "#negocio",
-            "#eficiencia",
-          ].map((tag) => (
+          {tags.map((tag) => (
             <span
               key={tag}
               className="rounded-lg border border-white/15 px-3 py-1.5 font-mono text-xs text-mist"
@@ -511,87 +687,217 @@ function Footer() {
   )
 }
 
+// -----------------------------------------------------------------------------
+// WhatsApp Icon
+// -----------------------------------------------------------------------------
+
 function WhatsappIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="h-5 w-5"
+      aria-hidden="true"
+    >
       <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.14c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09 1-2.38c.24-.27.53-.34.71-.34h.5c.16 0 .38-.03.58.44.24.57.79 1.97.86 2.11.07.14.11.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.13-.28.28-.12.55.16.27.72 1.19 1.55 1.93 1.07.95 1.97 1.24 2.24 1.38.27.14.43.11.59-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.2.51.31.07.11.07.62-.17 1.3z" />
     </svg>
   )
 }
 
-/* ---------------------------------------------------------- float whats */
+// -----------------------------------------------------------------------------
+// Floating WhatsApp
+// -----------------------------------------------------------------------------
+
 function FloatWhats() {
   return (
     <a
       href={WHATSAPP}
       target="_blank"
-      rel="noopener"
+      rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
-      className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_28px_rgba(0,0,0,0.5)] transition-transform duration-150 hover:scale-110"
+      className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_28px_rgba(0,0,0,0.5)] transition-all duration-300 hover:scale-110 hover:shadow-[0_14px_35px_rgba(37,211,102,0.35)]"
     >
-      <svg viewBox="0 0 24 24" fill="currentColor" className="h-7 w-7">
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="h-7 w-7"
+        aria-hidden="true"
+      >
         <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.8 14.14c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.11.11-1.79-.11-.41-.13-.94-.31-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09 1-2.38c.24-.27.53-.34.71-.34h.5c.16 0 .38-.03.58.44.24.57.79 1.97.86 2.11.07.14.11.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.49-.14.13-.28.28-.12.55.16.27.72 1.19 1.55 1.93 1.07.95 1.97 1.24 2.24 1.38.27.14.43.11.59-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.53.72 1.79.85.27.13.44.2.51.31.07.11.07.62-.17 1.3z" />
       </svg>
     </a>
   )
 }
 
-/* -------------------------------------------------------------- layout */
+// -----------------------------------------------------------------------------
+// Home
+// -----------------------------------------------------------------------------
+
 function Home() {
   const pageRef = useRef<HTMLDivElement>(null)
 
   useGSAP(
     () => {
-      gsap.registerPlugin(ScrollTrigger)
-      const mm = gsap.matchMedia()
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.utils.toArray<HTMLElement>(".rvl").forEach((el) => {
+      const ctx = gsap.context(() => {
+        // ---------------------------------------------------------------------
+        // Hero
+        // ---------------------------------------------------------------------
+
+        const heroItems = gsap.utils.toArray<HTMLElement>(
+          ".hero-item",
+        )
+
+        gsap.fromTo(
+          heroItems,
+          {
+            opacity: 0,
+            y: 24,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            stagger: 0.12,
+            ease: "power3.out",
+            clearProps: "transform",
+          },
+        )
+
+        // ---------------------------------------------------------------------
+        // Python emblem
+        // ---------------------------------------------------------------------
+
+        const heroVisual = document.querySelector(
+          ".hero-visual",
+        )
+
+        if (heroVisual) {
           gsap.fromTo(
-            el,
-            { autoAlpha: 0, y: 28 },
+            heroVisual,
             {
-              autoAlpha: 1,
+              opacity: 0,
+              scale: 0.94,
+              y: 18,
+            },
+            {
+              opacity: 1,
+              scale: 1,
               y: 0,
-              duration: 0.8,
-              ease: "power2.out",
-              scrollTrigger: { trigger: el, start: "top 88%", once: true },
+              duration: 1.1,
+              delay: 0.25,
+              ease: "power3.out",
             },
           )
-        })
-      })
-      return () => mm.revert()
+
+          // Movimento muito leve durante o scroll.
+          gsap.to(heroVisual, {
+            y: -25,
+            ease: "none",
+            scrollTrigger: {
+              trigger: heroVisual,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.5,
+            },
+          })
+        }
+
+        // ---------------------------------------------------------------------
+        // Scroll reveal
+        // ---------------------------------------------------------------------
+
+        gsap.utils
+          .toArray<HTMLElement>(".rvl")
+          .forEach((element) => {
+            gsap.fromTo(
+              element,
+              {
+                autoAlpha: 0,
+                y: 24,
+              },
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                  trigger: element,
+                  start: "top 88%",
+                  once: true,
+                },
+              },
+            )
+          })
+      }, pageRef)
+
+      return () => ctx.revert()
     },
-    { scope: pageRef },
+    {
+      scope: pageRef,
+      dependencies: [],
+    },
   )
 
   return (
-    <div ref={pageRef} className="relative min-h-screen overflow-hidden">
-      {/* background layers */}
+    <div
+      ref={pageRef}
+      className="relative min-h-screen overflow-hidden bg-[#050812]"
+    >
+      {/* ------------------------------------------------------------------ */}
+      {/* Background */}
+      {/* ------------------------------------------------------------------ */}
+
       <div
         className="pointer-events-none fixed inset-0 z-0"
         aria-hidden="true"
       >
         <StarField className="z-10" />
+
         <div className="tech-grid absolute inset-0" />
-        {/* ambience glows */}
+
         <div className="absolute -top-32 left-1/2 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-pyblue/20 blur-[130px]" />
-        <div className="absolute top-[38%] -left-40 h-[360px] w-[360px] rounded-full bg-violet/15 blur-[120px]" />
-        <div className="absolute top-[60%] -right-40 h-[380px] w-[380px] rounded-full bg-teal/10 blur-[130px]" />
+
+        <div className="absolute -left-40 top-[38%] h-[360px] w-[360px] rounded-full bg-violet/15 blur-[120px]" />
+
+        <div className="absolute -right-40 top-[60%] h-[380px] w-[380px] rounded-full bg-teal/10 blur-[130px]" />
       </div>
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Header */}
+      {/* ------------------------------------------------------------------ */}
 
       <Header />
 
+      {/* ------------------------------------------------------------------ */}
+      {/* Main */}
+      {/* ------------------------------------------------------------------ */}
+
       <main className="relative z-10">
         <Hero />
+
         <MidSection />
+
         <TrustBar />
+
         <CtaPills />
+
         <Stats />
+
         <BigCta />
       </main>
 
+      {/* ------------------------------------------------------------------ */}
+      {/* Footer */}
+      {/* ------------------------------------------------------------------ */}
+
       <Footer />
+
+      {/* ------------------------------------------------------------------ */}
+      {/* Floating WhatsApp */}
+      {/* ------------------------------------------------------------------ */}
+
       <FloatWhats />
     </div>
   )
 }
+```
